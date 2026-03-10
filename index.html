@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investor Pitch Deck Preview</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0b0b0b;
+    color: #ddd;
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Banner */
+  .banner {
+    width: 100%;
+    background: #141414;
+    border-bottom: 1px solid #222;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #999;
+  }
+  .banner a {
+    color: #8a9a7b;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .banner a:hover { text-decoration: underline; }
+
+  /* Navigation */
+  .nav {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #141414;
+    border: 1px solid #222;
+    border-radius: 12px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    z-index: 100;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  }
+  .nav button {
+    background: #8a9a7b;
+    color: #fff;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.15s;
+  }
+  .nav button:hover { opacity: 0.85; }
+  .nav button:disabled { opacity: 0.3; cursor: default; }
+  .nav .counter {
+    font-size: 14px;
+    color: #999;
+    min-width: 50px;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Slide container */
+  .slide-viewport {
+    width: 100%;
+    max-width: 900px;
+    padding: 32px 24px 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+  }
+
+  /* Slide card */
+  .slide {
+    width: 800px;
+    height: 450px;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    display: none;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+    flex-shrink: 0;
+  }
+  .slide.active { display: block; }
+
+  /* Light slides */
+  .slide-light {
+    background: #f5f3f0;
+    color: #343D46;
+  }
+
+  /* Dark slides */
+  .slide-dark {
+    background: #343D46;
+    color: #fff;
+  }
+
+  /* Accent bar */
+  .accent-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: #8a9a7b;
+  }
+
+  /* Shared typography */
+  .section-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #8a9a7b;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .slide-title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+  .slide-light .slide-title { color: #343D46; }
+  .slide-dark .slide-title { color: #fff; }
+
+  .slide-body {
+    font-size: 10px;
+    line-height: 1.6;
+    color: #343D46;
+  }
+
+  .slide-content {
+    padding: 28px 36px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Bullet lists */
+  .bullet-list {
+    list-style: none;
+    padding: 0;
+  }
+  .bullet-list li {
+    font-size: 9.5px;
+    line-height: 1.55;
+    margin-bottom: 5px;
+    padding-left: 12px;
+    position: relative;
+    color: #343D46;
+  }
+  .bullet-list li::before {
+    content: "\2022";
+    position: absolute;
+    left: 0;
+    color: #8a9a7b;
+    font-weight: bold;
+  }
+  .slide-dark .bullet-list li { color: #dcd5cf; }
+  .slide-dark .bullet-list li::before { color: #8a9a7b; }
+
+  /* Stats bar */
+  .stats-bar {
+    display: flex;
+    gap: 20px;
+    margin-top: auto;
+    padding-top: 12px;
+  }
+  .stat-item .stat-num {
+    font-size: 22px;
+    font-weight: 700;
+    color: #8a9a7b;
+  }
+  .stat-item .stat-label {
+    font-size: 8px;
+    color: #dcd5cf;
+    margin-top: 2px;
+  }
+
+  /* Two-column layout */
+  .two-col {
+    display: flex;
+    gap: 24px;
+    flex: 1;
+    min-height: 0;
+  }
+  .two-col .col {
+    flex: 1;
+    min-width: 0;
+  }
+  .col-divider {
+    width: 1px;
+    background: #dcd5cf;
+    flex-shrink: 0;
+  }
+
+  /* Three-column layout */
+  .three-col {
+    display: flex;
+    gap: 16px;
+    flex: 1;
+    min-height: 0;
+  }
+  .three-col .col { flex: 1; min-width: 0; }
+
+  .col-title {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .col-title.accent { color: #8a9a7b; }
+  .col-title.secondary { color: #a8b89a; }
+  .col-title-bar {
+    height: 2px;
+    margin-bottom: 8px;
+  }
+  .col-title-bar.accent { background: #8a9a7b; }
+  .col-title-bar.secondary { background: #a8b89a; }
+
+  /* Driver cards */
+  .driver-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    flex: 1;
+  }
+  .driver-card {
+    position: relative;
+    padding-left: 8px;
+  }
+  .driver-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 24px;
+    background: #8a9a7b;
+    border-radius: 2px;
+  }
+  .driver-card .driver-title {
+    font-size: 10px;
+    font-weight: 700;
+    color: #343D46;
+    margin-bottom: 3px;
+  }
+  .driver-card .driver-desc {
+    font-size: 8px;
+    line-height: 1.5;
+    color: #343D46;
+  }
+
+  /* Company grid */
+  .company-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 24px;
+  }
+  .company-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .company-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #8a9a7b;
+    min-width: 70px;
+  }
+  .company-detail {
+    font-size: 8.5px;
+    color: #343D46;
+    line-height: 1.4;
+  }
+  .company-year {
+    font-size: 7.5px;
+    color: #6b7278;
+    font-style: italic;
+  }
+
+  /* Lever rows */
+  .lever-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .lever-num {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #8a9a7b;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .lever-content { flex: 1; min-width: 0; }
+  .lever-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: #343D46;
+  }
+  .lever-desc {
+    font-size: 8.5px;
+    color: #343D46;
+    line-height: 1.5;
+  }
+
+  /* KV terms */
+  .kv-list .kv-item {
+    margin-bottom: 5px;
+  }
+  .kv-key {
+    font-size: 9.5px;
+    font-weight: 700;
+    color: #8a9a7b;
+  }
+  .kv-val {
+    font-size: 9px;
+    color: #343D46;
+    line-height: 1.4;
+  }
+
+  /* Risk grid */
+  .risk-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 24px;
+  }
+  .risk-item .risk-cat {
+    font-size: 10px;
+    font-weight: 700;
+    color: #8a9a7b;
+    margin-bottom: 2px;
+  }
+  .risk-item .risk-mit {
+    font-size: 8.5px;
+    color: #343D46;
+    line-height: 1.5;
+  }
+
+  /* Advantage rows */
+  .adv-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 5px;
+  }
+  .adv-bar {
+    width: 3px;
+    height: 20px;
+    background: #8a9a7b;
+    border-radius: 2px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .adv-title {
+    font-size: 10px;
+    font-weight: 700;
+    color: #343D46;
+    min-width: 110px;
+  }
+  .adv-desc {
+    font-size: 8.5px;
+    color: #343D46;
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  /* Ask slide terms */
+  .ask-terms .ask-item {
+    margin-bottom: 4px;
+  }
+  .ask-key {
+    font-size: 10px;
+    font-weight: 700;
+    color: #8a9a7b;
+    margin-right: 6px;
+  }
+  .ask-val {
+    font-size: 10px;
+    color: #fff;
+  }
+  .gov-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #8a9a7b;
+    margin-bottom: 6px;
+  }
+
+  /* Contact slide */
+  .contact-center {
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .contact-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .contact-role {
+    font-size: 12px;
+    color: #8a9a7b;
+    margin-bottom: 16px;
+  }
+  .contact-info {
+    font-size: 10px;
+    color: #dcd5cf;
+    line-height: 1.8;
+  }
+  .contact-tagline {
+    font-size: 13px;
+    font-style: italic;
+    color: #8a9a7b;
+    margin-top: 20px;
+  }
+
+  /* Cover */
+  .cover-fund {
+    font-size: 42px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 2px;
+    margin-top: 20px;
+  }
+  .cover-subtitle {
+    font-size: 17px;
+    color: #8a9a7b;
+    margin-top: 4px;
+    margin-bottom: 12px;
+  }
+  .cover-tagline {
+    font-size: 11px;
+    color: #dcd5cf;
+    line-height: 1.6;
+    max-width: 520px;
+  }
+  .cover-footer {
+    font-size: 7px;
+    color: #6b7278;
+    margin-top: auto;
+  }
+
+  /* Slide tagline/footer */
+  .slide-tagline {
+    font-size: 11px;
+    font-style: italic;
+    color: #8a9a7b;
+    margin-top: auto;
+    padding-top: 6px;
+  }
+  .slide-note {
+    font-size: 9px;
+    font-style: italic;
+    color: #343D46;
+    margin-top: auto;
+    padding-top: 6px;
+  }
+  .dark-footer {
+    font-size: 7px;
+    color: #6b7278;
+    margin-top: auto;
+    padding-top: 6px;
+  }
+
+  /* Portfolio target line */
+  .portfolio-target {
+    font-size: 9px;
+    color: #343D46;
+    margin-top: auto;
+    padding-top: 6px;
+  }
+  .portfolio-target strong {
+    color: #8a9a7b;
+  }
+
+  /* About stats */
+  .about-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .about-stat .about-num {
+    font-size: 26px;
+    font-weight: 700;
+    color: #8a9a7b;
+  }
+  .about-stat .about-label {
+    font-size: 8px;
+    color: #343D46;
+  }
+
+  @media (max-width: 860px) {
+    .slide { width: 100%; height: auto; aspect-ratio: 16/9; }
+    .slide-viewport { padding: 24px 12px 100px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="banner">
+  Generated by
+  <a href="https://github.com/sbc1-code/investor-pitch-generator" target="_blank" rel="noopener">investor-pitch-generator</a>
+</div>
+
+<div class="slide-viewport">
+
+  <!-- SLIDE 1: COVER -->
+  <div class="slide slide-dark active" data-slide="1">
+    <div class="accent-bar"></div>
+    <div class="slide-content">
+      <div class="cover-fund">ACME FUND</div>
+      <div class="cover-subtitle">Industrial Real Estate Investment Fund</div>
+      <div class="cover-tagline">
+        Building a diversified portfolio of USD-leased industrial assets<br>
+        across high-growth nearshoring corridors
+      </div>
+      <div class="stats-bar">
+        <div class="stat-item">
+          <div class="stat-num">$1.5B</div>
+          <div class="stat-label">Target GAV</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">14-17%</div>
+          <div class="stat-label">Net IRR Target</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">7-8%</div>
+          <div class="stat-label">Cash Yield</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">60+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+      </div>
+      <div class="cover-footer">CONFIDENTIAL | For Qualified Investors Only</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: THE OPPORTUNITY -->
+  <div class="slide slide-light" data-slide="2">
+    <div class="accent-bar"></div>
+    <div class="slide-content">
+      <div class="section-label">THE OPPORTUNITY</div>
+      <div class="slide-title">Nearshoring Is Reshaping North American<br>Supply Chains, Creating a Generational<br>Investment Opportunity</div>
+      <ul class="bullet-list">
+        <li>Nearshoring super-cycle: Global supply chains are relocating closer to end demand. Target markets deliver U.S. adjacency without trans-Pacific fragility.</li>
+        <li>Tariff-volatility mitigation: USMCA helps tenants retain duty-free U.S. consumer access while reducing tariff and export-control shocks.</li>
+        <li>Labor + logistics advantage: Competitive skilled labor, proximity to U.S. interstates and rail crossings, shorter transit cycles than Asia.</li>
+        <li>Income & valuation spread: Target market cap rates at ~200 bps spread to U.S. Sunbelt industrial; USD lease structures compress perceived FX risk.</li>
+        <li>Institutional demand gap: Limited institutional-quality supply in high-demand corridors creates pricing power for well-positioned developers.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: ABOUT US -->
+  <div class="slide slide-light" data-slide="3">
+    <div class="accent-bar"></div>
+    <div class="slide-content">
+      <div class="section-label">ABOUT US</div>
+      <div class="slide-title">60+ Years of Industrial Real Estate<br>in the Target Market</div>
+      <div class="two-col">
+        <div class="col">
+          <p class="slide-body" style="margin-bottom:8px;">Acme Industrial is a family-owned industrial real estate developer rooted in the target market since the early days of cross-border manufacturing.</p>
+          <ul class="bullet-list">
+            <li>Full-service: development, build-to-suit, sale-leaseback, spec buildings</li>
+            <li>1.5M+ sq ft developed across multiple industrial parks</li>
+            <li>Deep municipal and entitlement access in target market</li>
+            <li>Established relationships with multinational tenants</li>
+            <li>In-house general contractor capabilities</li>
+            <li>Proprietary land bank and ROFR/JV pipeline</li>
+          </ul>
+        </div>
+        <div class="col">
+          <div class="about-stats">
+            <div class="about-stat"><div class="about-num">60+</div><div class="about-label">Years Manufacturing Experience</div></div>
+            <div class="about-stat"><div class="about-num">1.5M+</div><div class="about-label">Sq Ft Developed</div></div>
+            <div class="about-stat"><div class="about-num">30+</div><div class="about-label">Years as Developer</div></div>
+            <div class="about-stat"><div class="about-num">90M+</div><div class="about-label">Sq Ft Industrial Space in Target Market</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-tagline">"Large enough to serve, small enough to care."</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: MARKET OVERVIEW -->
+  <div class="slide slide-light" data-slide="4">
+    <div class="accent-bar"></div>
+    <div class="slide-content">
+      <div class="section-label">MARKET OVERVIEW</div>
+      <div class="slide-title">Three Strategic Markets Across<br>the Target Region</div>
+      <div class="three-col">
+        <div class="col">
+          <div class="col-title accent">Market Alpha</div>
+          <div class="col-title-bar accent"></div>
+          <ul class="bullet-list">
+            <li>Borders two U.S. states</li>
+            <li>Major electronics manufacturing cluster</li>
+            <li>4 commercial bridge crossings</li>
+            <li>60+ years of manufacturing history</li>
+            <li>261,000+ manufacturing workers</li>
+            <li>370+ registered companies</li>
+          </ul>
+        </div>
+        <div class="col">
+          <div class="col-title secondary">Market Beta</div>
+          <div class="col-title-bar secondary"></div>
+          <ul class="bullet-list">
+            <li>Regional industrial and financial capital</li>
+            <li>Deep automotive and heavy manufacturing base</li>
+            <li>Largest talent pool of engineers in the region</li>
+            <li>International airport with direct U.S. flights</li>
+            <li>Premium institutional-grade industrial parks</li>
+            <li>Strong infrastructure and logistics networks</li>
+          </ul>
+        </div>
+        <div class="col">
+          <div class="col-title accent">Market Gamma</div>
+          <div class="col-title-bar accent"></div>
+          <ul class="bullet-list">
+            <li>Direct border access to Southern California</li>
+            <li>Medical device manufacturing hub</li>
+            <li>Aerospace and defense cluster</li>
+            <li>Gateway to Pacific trade routes</li>
+            <li>Strong bilingual workforce</li>
+            <li>Growing institutional investor interest</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: DEMAND DRIVERS -->
+  <div class="slide slide-light" data-slide="5">
+    <div class="accent-bar"></div>
+    <div class="slide-content">
+      <div class="section-label">DEMAND DRIVERS</div>
+      <div class="slide-title">Why Companies Are Moving to<br>the Target Region Now</div>
+      <div class="driver-grid">
+        <div class="driver-card">
+          <div class="driver-title">Tariff Pressure</div>
+          <div class="driver-desc">China tariffs at 25%+ with escalation risk. USMCA provides duty-free U.S. access for locally assembled products.</div>
+        </div>
+        <div class="driver-card">
+          <div class="driver-title">Supply Chain Risk</div>
+          <div class="driver-desc">COVID exposed single-source fragility. Boards are mandating nearshore alternatives for supply chain resilience.</div>
+        </div>
+        <div class="driver-card">
+          <div class="driver-title">Customer Mandates</div>
+          <div class="driver-desc">U.S. buyers increasingly requiring nearshore or domestic production from their suppliers.</div>
+        </div>
+        <div class="driver-card">
+          <div class="driver-title">Speed to Market</div>
+          <div class="driver-desc">2-3 day ground transit vs. 4-6 week ocean freight from Asia. Same-day customs clearance at the border.</div>
+        </div>
+        <div class="driver-card">
+          <div class="driver-title">Labor Advantage</div>
+          <div class="driver-desc">20-30% of China coastal wages. Deep skilled manufacturing workforce with 60+ years of experience.</div>
+        </div>
+        <div class="driver-card">
+          <div class="driver-title">USMCA Compliance</div>
+          <div class="driver-desc">Products assembled locally qualify for duty-free U.S. import under rules of origin provisions.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: TENANT DEMAND -->
+  <div class="slide slide-light" data-slide="6">
+    <div class="accent-bar"></div>
+    <div class="slide-content">
+      <div class="section-label">TENANT DEMAND</div>
+      <div class="slide-title">Asia's Electronics Giants Are Already<br>Building in the Target Region</div>
+      <div class="company-grid">
+        <div class="company-row">
+          <span class="company-name">Foxconn</span>
+          <span class="company-detail">iPhone, AI servers | $20B+ regional investment<br><span class="company-year">Operations since 2005</span></span>
+        </div>
+        <div class="company-row">
+          <span class="company-name">Pegatron</span>
+          <span class="company-detail">Apple supplier | Regional expansion<br><span class="company-year">Operations since 2014</span></span>
+        </div>
+        <div class="company-row">
+          <span class="company-name">Flex Ltd</span>
+          <span class="company-detail">EMS leader | Long-term presence<br><span class="company-year">Operations since 2003</span></span>
+        </div>
+        <div class="company-row">
+          <span class="company-name">Inventec</span>
+          <span class="company-detail">Server & notebook ODM | US-proximate production<br><span class="company-year">Operations since 2008</span></span>
+        </div>
+        <div class="company-row">
+          <span class="company-name">Quanta</span>
+          <span class="company-detail">World's largest notebook ODM | Expanding footprint<br><span class="company-year">Operations since 2010</span></span>
+        </div>
+        <div class="company-row">
+          <span class="company-name">Wistron</span>
+          <span class="company-detail">Consumer electronics | Supply chain diversification<br><span class="company-year">Operations since 2012</span></span>
+        </div>
+        <div class="company-row">
+          <span class="company-name">Wiwynn</span>
+          <span class="company-detail">Cloud server hardware | Data center supply chain<br><span class="company-year">Operations expanding</span></span>
+        </div>
+      </div>
+      <div class="slide-note">These OEMs and their supply chain partners need industrial space. Their suppliers represent an additional pipeline of tenant demand for the fund.</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: INVESTMENT STRATEGY -->
+  <div class="slide slide-light" data-slide="7">
+    <div class="accent-bar"></div>
+    <div class="slide-content">
+      <div class="section-label">INVESTMENT STRATEGY</div>
+      <div class="slide-title">Core-Plus Industrial Portfolio<br>With Development Upside</div>
+      <div class="two-col">
+        <div class="col">
+          <div class="col-title accent">Stabilized Acquisitions (~65%)</div>
+          <ul class="bullet-list">
+            <li>Class-A industrial, >100,000 SF</li>
+            <li>NNN leases, USD-denominated</li>
+            <li>WALT ~5 years, annual CPI escalators</li>
+            <li>Multinational credit tenants</li>
+            <li>Entry cap range: ~8.0% across target markets</li>
+          </ul>
+        </div>
+        <div class="col-divider"></div>
+        <div class="col">
+          <div class="col-title secondary">Build-to-Core Development (up to 35%)</div>
+          <ul class="bullet-list">
+            <li>12%+ yield-on-cost target</li>
+            <li>~65% LTC fixed-rate financing</li>
+            <li>6-12 months reserves</li>
+            <li>First building spec; 50%+ leased before next spec</li>
+            <li>Pre-leased and build-to-suit preferred</li>
+            <li>Corporate guaranteed leases (where available)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="portfolio-target"><strong>Target:</strong> $1.5B gross asset value across ~60 assets | ~$9.3M equity per deal | MSA cap 40% | 6 assets per year</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: RETURN ENGINE -->
+  <div class="slide slide-light" data-slide="8">
+    <div class="accent-bar"></div>
+    <div class="slide-content">
+      <div class="section-label">RETURNS</div>
+      <div class="slide-title">Five Levers Driving Returns</div>
+      <div style="flex:1; display:flex; flex-direction:column; gap:4px; justify-content:center;">
+        <div class="lever-row">
+          <div class="lever-num">1</div>
+          <div class="lever-content">
+            <div class="lever-title">Going-In Yield Premium</div>
+            <div class="lever-desc">Core-Plus income from day one. Target market cap rates offer ~200 bps spread vs. U.S. Sunbelt industrial.</div>
+          </div>
+        </div>
+        <div class="lever-row">
+          <div class="lever-num">2</div>
+          <div class="lever-content">
+            <div class="lever-title">Contractual NOI Growth</div>
+            <div class="lever-desc">NNN lease structures with U.S. CPI escalators provide built-in annual rent growth.</div>
+          </div>
+        </div>
+        <div class="lever-row">
+          <div class="lever-num">3</div>
+          <div class="lever-content">
+            <div class="lever-title">Credit Quality & Lease Term</div>
+            <div class="lever-desc">~5-year WALT with multinational corporate-guaranteed tenants reduces income volatility.</div>
+          </div>
+        </div>
+        <div class="lever-row">
+          <div class="lever-num">4</div>
+          <div class="lever-content">
+            <div class="lever-title">Execution Alpha</div>
+            <div class="lever-desc">Proprietary access via ROFR/JVs, land bank, in-house development and GC capabilities.</div>
+          </div>
+        </div>
+        <div class="lever-row">
+          <div class="lever-num">5</div>
+          <div class="lever-content">
+            <div class="lever-title">Exit Cap Discipline</div>
+            <div class="lever-desc">Underwrite exit at minimum 100 bps inside entry cap. Rolling sales at IRR/MOIC thresholds.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 9: FUND STRUCTURE -->
+  <div class="slide slide-light" data-slide="9">
+    <div class="accent-bar"></div>
+    <div class="slide-content">
+      <div class="section-label">FUND STRUCTURE</div>
+      <div class="slide-title">Acme Fund | Key Terms</div>
+      <div class="two-col">
+        <div class="col kv-list">
+          <div class="kv-item"><div class="kv-key">Vehicle</div><div class="kv-val">Delaware LP master with optional Cayman feeder/blocker</div></div>
+          <div class="kv-item"><div class="kv-key">Fund Life</div><div class="kv-val">Closed-end, up to 15 years</div></div>
+          <div class="kv-item"><div class="kv-key">Target GAV</div><div class="kv-val">$1.5B across ~60 assets</div></div>
+          <div class="kv-item"><div class="kv-key">Target Leverage</div><div class="kv-val">~65% LTV at acquisition; 75% hard max</div></div>
+          <div class="kv-item"><div class="kv-key">Debt Profile</div><div class="kv-val">Fixed-rate bias, 7-10 year tenor, DSCR 1.25x+</div></div>
+          <div class="kv-item"><div class="kv-key">Currency</div><div class="kv-val">All USD (leases, debt, distributions)</div></div>
+          <div class="kv-item"><div class="kv-key">GP Commitment</div><div class="kv-val">5-10% of fund</div></div>
+        </div>
+        <div class="col-divider"></div>
+        <div class="col kv-list">
+          <div class="kv-item"><div class="kv-key">Target Net IRR</div><div class="kv-val">14-17%</div></div>
+          <div class="kv-item"><div class="kv-key">Cash Yield</div><div class="kv-val">7-8% quarterly</div></div>
+          <div class="kv-item"><div class="kv-key">Preferred Return</div><div class="kv-val">8% cumulative, non-compounding</div></div>
+          <div class="kv-item"><div class="kv-key">Promote</div><div class="kv-val">15-20% over 8% IRR<br>20-25% over 12% IRR<br>30% over 17% IRR</div></div>
+          <div class="kv-item"><div class="kv-key">AM Fee</div><div class="kv-val">2.0% during IP, then 1.5%</div></div>
+          <div class="kv-item"><div class="kv-key">Acquisition Fee</div><div class="kv-val">1%</div></div>
+          <div class="kv-item"><div class="kv-key">Development Fee</div><div class="kv-val">5%</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 10: RISK MANAGEMENT -->
+  <div class="slide slide-light" data-slide="10">
+    <div class="accent-bar"></div>
+    <div class="slide-content">
+      <div class="section-label">RISK MANAGEMENT</div>
+      <div class="slide-title">Disciplined Risk Framework</div>
+      <div class="risk-grid">
+        <div class="risk-item">
+          <div class="risk-cat">Market / Policy</div>
+          <div class="risk-mit">USMCA + USD leases provide structural hedge; MSA concentration cap at 40%</div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-cat">Tenant / Credit</div>
+          <div class="risk-mit">80%+ credit or parent-guaranteed tenants; watch-list protocol at 24-30 months to maturity</div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-cat">Lease / Income</div>
+          <div class="risk-mit">NNN + CPI escalators; staggered lease maturities across portfolio</div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-cat">Construction</div>
+          <div class="risk-mit">Up to 35% development allocation; 12%+ YoC; 6-12 month reserves; GMP contracts</div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-cat">Debt / Refi</div>
+          <div class="risk-mit">Fixed-rate bias, DSCR 1.25x+, LTV up to 75%; no subscription lines</div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-cat">Legal / Compliance</div>
+          <div class="risk-mit">FCPA and sanctions diligence; environmental assessment; title insurance on all acquisitions</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 11: COMPETITIVE ADVANTAGE -->
+  <div class="slide slide-light" data-slide="11">
+    <div class="accent-bar"></div>
+    <div class="slide-content">
+      <div class="section-label">COMPETITIVE ADVANTAGE</div>
+      <div class="slide-title">Why Acme Fund</div>
+      <div style="flex:1; display:flex; flex-direction:column; gap:6px; justify-content:center;">
+        <div class="adv-row">
+          <div class="adv-bar"></div>
+          <div class="adv-title">Proprietary Access</div>
+          <div class="adv-desc">Land bank, ROFR agreements, joint venture relationships, and repeat tenant pipelines that institutional funds cannot replicate.</div>
+        </div>
+        <div class="adv-row">
+          <div class="adv-bar"></div>
+          <div class="adv-title">Local Execution</div>
+          <div class="adv-desc">Established entitlement and municipal access. In-house general contractor reduces timelines and costs.</div>
+        </div>
+        <div class="adv-row">
+          <div class="adv-bar"></div>
+          <div class="adv-title">Data & AI Engine</div>
+          <div class="adv-desc">Broker pipeline scraping, AI-assisted lead scoring, and site-selection models built on 1,000+ qualified leads and decades of market intelligence.</div>
+        </div>
+        <div class="adv-row">
+          <div class="adv-bar"></div>
+          <div class="adv-title">Cross-Border</div>
+          <div class="adv-desc">Bilingual team, U.S.-Mexico capital markets expertise, and dual-border advantage for faster closings and operational flexibility.</div>
+        </div>
+        <div class="adv-row">
+          <div class="adv-bar"></div>
+          <div class="adv-title">Aligned Incentives</div>
+          <div class="adv-desc">GP commits 5-10% alongside LPs. Transparent affiliate policies. Independent IC member. Institutional reporting package.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 12: THE ASK -->
+  <div class="slide slide-dark" data-slide="12">
+    <div class="accent-bar"></div>
+    <div class="slide-content">
+      <div class="section-label">THE ASK</div>
+      <div class="slide-title" style="font-size:26px; line-height:1.3;">Invest in the<br>Nearshoring Super-Cycle</div>
+      <div class="two-col" style="flex:1;">
+        <div class="col ask-terms">
+          <div class="ask-item"><span class="ask-key">Target Net IRR</span><span class="ask-val">14-17% (net to LPs, USD)</span></div>
+          <div class="ask-item"><span class="ask-key">Cash Yield</span><span class="ask-val">7-8% quarterly distributions</span></div>
+          <div class="ask-item"><span class="ask-key">Fund Life</span><span class="ask-val">Closed-end, up to 15 years</span></div>
+          <div class="ask-item"><span class="ask-key">Preferred Return</span><span class="ask-val">8% cumulative</span></div>
+          <div class="ask-item"><span class="ask-key">GP Commitment</span><span class="ask-val">5-10%, fully aligned</span></div>
+        </div>
+        <div class="col">
+          <div class="gov-title">Governance & Reporting</div>
+          <ul class="bullet-list">
+            <li>GP-controlled IC with 1 independent member</li>
+            <li>LP observer rights; LPAC for major deviations</li>
+            <li>Quarterly institutional reporting + annual GAAP audit</li>
+            <li>Quarterly NAV</li>
+            <li>Disposition-ready data rooms maintained</li>
+          </ul>
+        </div>
+      </div>
+      <div class="dark-footer">CONFIDENTIAL | For Qualified Investors Only</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 13: CONTACT -->
+  <div class="slide slide-dark" data-slide="13">
+    <div class="accent-bar"></div>
+    <div class="slide-content">
+      <div class="contact-center">
+        <div class="contact-name">John Smith</div>
+        <div class="contact-role">CEO, Acme Industrial Real Estate</div>
+        <div class="contact-info">
+          ceo@example.com<br>
+          acme-industrial.com<br>
+          Target Market, Country
+        </div>
+        <div class="contact-tagline">"Large enough to serve, small enough to care."</div>
+      </div>
+      <div class="dark-footer">CONFIDENTIAL | For Qualified Investors Only</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Navigation -->
+<div class="nav">
+  <button id="prev" aria-label="Previous slide">&#8592;</button>
+  <div class="counter"><span id="current">1</span> / 13</div>
+  <button id="next" aria-label="Next slide">&#8594;</button>
+</div>
+
+<script>
+(function() {
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+
+  const prevBtn = document.getElementById('prev');
+  const nextBtn = document.getElementById('next');
+  const counter = document.getElementById('current');
+
+  function show(idx) {
+    slides[current].classList.remove('active');
+    current = idx;
+    slides[current].classList.add('active');
+    counter.textContent = current + 1;
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === total - 1;
+  }
+
+  prevBtn.addEventListener('click', function() { if (current > 0) show(current - 1); });
+  nextBtn.addEventListener('click', function() { if (current < total - 1) show(current + 1); });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft' && current > 0) show(current - 1);
+    if (e.key === 'ArrowRight' && current < total - 1) show(current + 1);
+  });
+
+  show(0);
+})();
+</script>
+
+</body>
+</html>

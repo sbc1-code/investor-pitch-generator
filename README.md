@@ -1,33 +1,28 @@
 # Investor Pitch Deck Generator
 
-Python script that generates a professional 13-slide investor pitch deck using `python-pptx`. Built for industrial real estate funds, but the structure and techniques apply to any institutional pitch.
+Python script that generates professional investor pitch decks.
 
-## What It Generates
+**[Live Preview](https://sbc1-code.github.io/investor-pitch-generator/)** -- see the 13-slide output rendered as HTML.
 
-A 16:9 PPTX presentation with:
+## What It Does
 
-- Cover slide with branded stats bar
-- Market opportunity overview
-- Company background with key metrics
-- Multi-market comparison (3 columns)
-- Demand drivers grid (2x3)
-- Tenant demand showcase
-- Investment strategy (dual-column split)
-- Return engine (5 numbered levers)
-- Fund structure and terms
-- Risk management framework
-- Competitive advantage summary
-- The ask (dark slide with terms recap)
-- Contact slide
+Generates a 16:9 PPTX investor pitch deck with 13 slides:
 
-## Features
+1. Cover with branded stats bar
+2. Market opportunity overview
+3. Company background with key metrics
+4. Multi-market comparison (3 columns)
+5. Demand drivers grid (2x3)
+6. Tenant demand showcase
+7. Investment strategy (dual-column split)
+8. Return engine (5 numbered levers)
+9. Fund structure and terms
+10. Risk management framework
+11. Competitive advantage summary
+12. The ask (dark slide with terms recap)
+13. Contact slide
 
-- Configurable brand colors and fonts at the top of the file
-- Reusable helper functions: `add_accent_bar()`, `add_section_label()`, `add_title()`, `add_body()`, `add_bullet_list()`, `add_stat_box()`, `add_kv_row()`
-- Logo watermark placement on content slides
-- Dark and light slide backgrounds
-- Professional typography with Inter font
-- Data-driven: all content is defined in Python data structures, easy to swap
+Built for industrial real estate funds, but the structure works for any institutional pitch. All content is defined in Python data structures, so swapping in your own data is straightforward.
 
 ## Usage
 
@@ -40,22 +35,19 @@ Output: `./output/Investor_Pitch_Deck.pptx`
 
 ## Customization
 
-1. Update the brand constants at the top (`ACCENT`, `SECONDARY`, `DARK_SLATE`, etc.)
+1. Update the brand constants at the top of the script (`ACCENT`, `SECONDARY`, `DARK_SLATE`, etc.)
 2. Place your logo files in `./assets/`
 3. Modify the content data structures (stats, cities, drivers, etc.) for your fund
 4. Run the script
 
-## Directory Structure
+## Features
 
-```
-investor-pitch-generator/
-  build_investor_deck.py    # Main script
-  assets/                   # Place logo PNGs here
-    logo_dark.png
-    logo_white.png
-    icon_accent.png
-  output/                   # Generated deck lands here
-```
+- Configurable brand colors and fonts
+- Reusable helper functions: `add_accent_bar()`, `add_section_label()`, `add_title()`, `add_body()`, `add_bullet_list()`, `add_stat_box()`, `add_kv_row()`
+- Logo watermark placement on content slides
+- Dark and light slide backgrounds
+- Professional typography with Inter font
+- Data-driven: all content lives in Python data structures
 
 ## Requirements
 
