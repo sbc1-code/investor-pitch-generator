@@ -226,10 +226,10 @@ p.line_spacing = Pt(26)
 
 # Stats bar at bottom
 stats = [
-    ("$1.5B", "Target GAV"),
-    ("14-17%", "Net IRR Target"),
-    ("7-8%", "Cash Yield"),
-    ("60+", "Years Experience"),
+    ("$500M", "Target GAV"),
+    ("12-15%", "Net IRR Target"),
+    ("6-7%", "Cash Yield"),
+    ("20+", "Years Experience"),
 ]
 for i, (num, label) in enumerate(stats):
     x = Inches(0.8) + Inches(3) * i
@@ -293,7 +293,7 @@ add_accent_bar(slide)
 add_logo_watermark(slide)
 
 add_section_label(slide, "ABOUT US", Inches(0.8), Inches(0.5))
-add_title(slide, "60+ Years of Industrial Real Estate\nin the Target Market", Inches(0.8), Inches(0.9), width=Inches(10))
+add_title(slide, "20+ Years of Industrial Real Estate\nin the Target Market", Inches(0.8), Inches(0.9), width=Inches(10))
 
 # Left column - about text
 tf = add_body(slide, "", Inches(0.8), Inches(2.4), width=Inches(5.5), height=Inches(4))
@@ -306,7 +306,7 @@ p.line_spacing = Pt(24)
 
 items_about = [
     "Full-service: development, build-to-suit, sale-leaseback, spec buildings",
-    "1.5M+ sq ft developed across multiple industrial parks",
+    "800K+ sq ft developed across multiple industrial parks",
     "Deep municipal and entitlement access in target market",
     "Established relationships with multinational tenants",
     "In-house general contractor capabilities",
@@ -323,10 +323,10 @@ for item in items_about:
 
 # Right column - key stats
 stats_right = [
-    ("60+", "Years Manufacturing\nExperience"),
-    ("1.5M+", "Sq Ft Developed"),
-    ("30+", "Years as Developer"),
-    ("90M+", "Sq Ft Industrial Space\nin Target Market"),
+    ("20+", "Years Manufacturing\nExperience"),
+    ("800K+", "Sq Ft Developed"),
+    ("15+", "Years as Developer"),
+    ("45M+", "Sq Ft Industrial Space\nin Target Market"),
 ]
 for i, (num, label) in enumerate(stats_right):
     x = Inches(7.5)
@@ -337,7 +337,7 @@ for i, (num, label) in enumerate(stats_right):
 txBox = slide.shapes.add_textbox(Inches(0.8), Inches(6.5), Inches(8), Inches(0.5))
 tf = txBox.text_frame
 p = tf.paragraphs[0]
-p.text = "\"Large enough to serve, small enough to care.\""
+p.text = "\"Building value through disciplined execution.\""
 p.font.size = Pt(18)
 p.font.italic = True
 p.font.color.rgb = ACCENT
@@ -362,7 +362,7 @@ cities = [
             "Borders two U.S. states",
             "Major electronics manufacturing cluster",
             "4 commercial bridge crossings",
-            "60+ years of manufacturing history",
+            "20+ years of manufacturing history",
             "261,000+ manufacturing workers",
             "370+ registered companies",
         ]
@@ -445,7 +445,7 @@ drivers = [
     ("Supply Chain Risk", "COVID exposed single-source fragility. Boards are mandating nearshore alternatives for supply chain resilience."),
     ("Customer Mandates", "U.S. buyers increasingly requiring nearshore or domestic production from their suppliers."),
     ("Speed to Market", "2-3 day ground transit vs. 4-6 week ocean freight from Asia. Same-day customs clearance at the border."),
-    ("Labor Advantage", "20-30% of China coastal wages. Deep skilled manufacturing workforce with 60+ years of experience."),
+    ("Labor Advantage", "20-30% of China coastal wages. Deep skilled manufacturing workforce with 20+ years of experience."),
     ("USMCA Compliance", "Products assembled locally qualify for duty-free U.S. import under rules of origin provisions."),
 ]
 
@@ -613,7 +613,7 @@ r.font.bold = True
 r.font.color.rgb = ACCENT
 r.font.name = FONT
 r2 = p.add_run()
-r2.text = "$1.5B gross asset value across ~60 assets  |  ~$9.3M equity per deal  |  MSA cap 40%  |  6 assets per year"
+r2.text = "$500M gross asset value across ~25 assets  |  ~$8M equity per deal  |  MSA cap 35%  |  4 assets per year"
 r2.font.size = Pt(14)
 r2.font.color.rgb = DARK_SLATE
 r2.font.name = FONT
@@ -692,7 +692,7 @@ add_title(slide, "Acme Fund | Key Terms", Inches(0.8), Inches(0.9), width=Inches
 left_terms = [
     ("Vehicle", "Delaware LP master with optional Cayman feeder/blocker"),
     ("Fund Life", "Closed-end, up to 15 years"),
-    ("Target GAV", "$1.5B across ~60 assets"),
+    ("Target GAV", "$500M across ~25 assets"),
     ("Target Leverage", "~65% LTV at acquisition; 75% hard max"),
     ("Debt Profile", "Fixed-rate bias, 7-10 year tenor, DSCR \u22651.25x"),
     ("Currency", "All USD (leases, debt, distributions)"),
@@ -700,8 +700,8 @@ left_terms = [
 ]
 
 right_terms = [
-    ("Target Net IRR", "14-17%"),
-    ("Cash Yield", "7-8% quarterly"),
+    ("Target Net IRR", "12-15%"),
+    ("Cash Yield", "6-7% quarterly"),
     ("Preferred Return", "8% cumulative, non-compounding"),
     ("Promote", "15-20% over 8% IRR\n20-25% over 12% IRR\n30% over 17% IRR"),
     ("AM Fee", "2.0% during IP, then 1.5%"),
@@ -899,8 +899,8 @@ p.line_spacing = Pt(52)
 
 # Key terms summary
 terms_summary = [
-    ("Target Net IRR", "14-17% (net to LPs, USD)"),
-    ("Cash Yield", "7-8% quarterly distributions"),
+    ("Target Net IRR", "12-15% (net to LPs, USD)"),
+    ("Cash Yield", "6-7% quarterly distributions"),
     ("Fund Life", "Closed-end, up to 15 years"),
     ("Preferred Return", "8% cumulative"),
     ("GP Commitment", "5-10%, fully aligned"),
@@ -1030,7 +1030,7 @@ p5.alignment = PP_ALIGN.CENTER
 txBox = slide.shapes.add_textbox(Inches(2), Inches(5.8), Inches(9), Inches(0.5))
 tf = txBox.text_frame
 p = tf.paragraphs[0]
-p.text = "\"Large enough to serve, small enough to care.\""
+p.text = "\"Building value through disciplined execution.\""
 p.font.size = Pt(18)
 p.font.italic = True
 p.font.color.rgb = ACCENT
