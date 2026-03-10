@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Investor Pitch Deck Generator
-Generates a professional investor pitch deck for industrial real estate funds
+Generates a professional investor pitch deck for multifamily real estate funds
 using python-pptx. Configurable branding, data-driven slides, institutional formatting.
 
 Usage:
@@ -201,7 +201,7 @@ txBox = slide.shapes.add_textbox(Inches(0.8), Inches(2.2), Inches(11), Inches(1.
 tf = txBox.text_frame
 p = tf.paragraphs[0]
 run = p.add_run()
-run.text = "ACME FUND"
+run.text = "MERIDIAN RESIDENTIAL FUND"
 run.font.size = Pt(72)
 run.font.bold = True
 run.font.color.rgb = WHITE
@@ -209,7 +209,7 @@ run.font.name = FONT
 
 p2 = tf.add_paragraph()
 run2 = p2.add_run()
-run2.text = "Industrial Real Estate Investment Fund"
+run2.text = "U.S. Multifamily Real Estate Investment Fund"
 run2.font.size = Pt(28)
 run2.font.color.rgb = ACCENT
 run2.font.name = FONT
@@ -218,7 +218,7 @@ run2.font.name = FONT
 txBox = slide.shapes.add_textbox(Inches(0.8), Inches(4.2), Inches(10), Inches(1))
 tf = txBox.text_frame
 p = tf.paragraphs[0]
-p.text = "Building a diversified portfolio of USD-leased industrial assets\nacross high-growth nearshoring corridors"
+p.text = "Building a diversified portfolio of workforce housing assets\nacross high-growth Sun Belt markets"
 p.font.size = Pt(16)
 p.font.color.rgb = WARM_GRAY
 p.font.name = FONT
@@ -226,10 +226,10 @@ p.line_spacing = Pt(26)
 
 # Stats bar at bottom
 stats = [
-    ("$500M", "Target GAV"),
-    ("12-15%", "Net IRR Target"),
-    ("6-7%", "Cash Yield"),
-    ("20+", "Years Experience"),
+    ("$200M", "Target GAV"),
+    ("13-16%", "Net IRR Target"),
+    ("5-6%", "Cash Yield"),
+    ("15+", "Years Experience"),
 ]
 for i, (num, label) in enumerate(stats):
     x = Inches(0.8) + Inches(3) * i
@@ -272,14 +272,14 @@ add_accent_bar(slide)
 add_logo_watermark(slide)
 
 add_section_label(slide, "THE OPPORTUNITY", Inches(0.8), Inches(0.5))
-add_title(slide, "Nearshoring Is Reshaping North American\nSupply Chains, Creating a\nGenerational Investment Opportunity", Inches(0.8), Inches(0.9), width=Inches(11))
+add_title(slide, "A Structural Housing Shortage Is Creating\na Generational Opportunity in\nSun Belt Multifamily", Inches(0.8), Inches(0.9), width=Inches(11))
 
 items = [
-    "Nearshoring super-cycle: Global supply chains are relocating closer to end demand. Target markets deliver U.S. adjacency without trans-Pacific fragility.",
-    "Tariff-volatility mitigation: USMCA helps tenants retain duty-free U.S. consumer access while reducing tariff and export-control shocks.",
-    "Labor + logistics advantage: Competitive skilled labor, proximity to U.S. interstates and rail crossings, shorter transit cycles than Asia.",
-    "Income & valuation spread: Target market cap rates at ~200 bps spread to U.S. Sunbelt industrial; USD lease structures compress perceived FX risk.",
-    "Institutional demand gap: Limited institutional-quality supply in high-demand corridors creates pricing power for well-positioned developers.",
+    "National housing deficit: The U.S. is short 4 to 7 million housing units, with the gap widening every year as new construction lags household formation.",
+    "Sun Belt migration wave: Population growth in Sun Belt metros is 2 to 3x the national average, driven by job creation, affordability, and remote work flexibility.",
+    "Homeownership out of reach: Rising mortgage rates and home prices have pushed monthly ownership costs 40%+ above renting, keeping millions in the renter pool.",
+    "Class B value-add spread: Unrenovated workforce housing trades at a 150 to 250 bps cap rate spread to Class A, creating margin for renovation-driven returns.",
+    "Millennial and Gen Z demand: 72 million millennials and 68 million Gen Z adults are entering peak renting years, sustaining long-term occupancy tailwinds.",
 ]
 
 add_bullet_list(slide, items, Inches(0.8), Inches(2.8), width=Inches(11.5), size=Pt(14))
@@ -293,24 +293,24 @@ add_accent_bar(slide)
 add_logo_watermark(slide)
 
 add_section_label(slide, "ABOUT US", Inches(0.8), Inches(0.5))
-add_title(slide, "20+ Years of Industrial Real Estate\nin the Target Market", Inches(0.8), Inches(0.9), width=Inches(10))
+add_title(slide, "15+ Years of Multifamily Investment\nAcross the U.S. Sun Belt", Inches(0.8), Inches(0.9), width=Inches(10))
 
 # Left column - about text
 tf = add_body(slide, "", Inches(0.8), Inches(2.4), width=Inches(5.5), height=Inches(4))
 p = tf.paragraphs[0]
-p.text = "Acme Industrial is a family-owned industrial real estate developer rooted in the target market since the early days of cross-border manufacturing."
+p.text = "Meridian Capital Partners is a multifamily-focused investment firm specializing in the acquisition, renovation, and stabilization of workforce housing across high-growth Sun Belt markets."
 p.font.size = Pt(15)
 p.font.color.rgb = DARK_SLATE
 p.font.name = FONT
 p.line_spacing = Pt(24)
 
 items_about = [
-    "Full-service: development, build-to-suit, sale-leaseback, spec buildings",
-    "800K+ sq ft developed across multiple industrial parks",
-    "Deep municipal and entitlement access in target market",
-    "Established relationships with multinational tenants",
-    "In-house general contractor capabilities",
-    "Proprietary land bank and ROFR/JV pipeline",
+    "Full-service acquisition, renovation, and stabilization platform",
+    "3,200+ units acquired and renovated across target markets",
+    "In-house property management for operational control",
+    "Established broker relationships in every target MSA",
+    "In-house construction management capabilities",
+    "Proprietary deal flow from off-market and direct seller channels",
 ]
 for item in items_about:
     p = tf.add_paragraph()
@@ -323,10 +323,10 @@ for item in items_about:
 
 # Right column - key stats
 stats_right = [
-    ("20+", "Years Manufacturing\nExperience"),
-    ("800K+", "Sq Ft Developed"),
-    ("15+", "Years as Developer"),
-    ("45M+", "Sq Ft Industrial Space\nin Target Market"),
+    ("15+", "Years Multifamily\nExperience"),
+    ("3,200+", "Units Acquired\n& Renovated"),
+    ("97%", "Average Historical\nOccupancy"),
+    ("$350M+", "Total Transaction\nVolume"),
 ]
 for i, (num, label) in enumerate(stats_right):
     x = Inches(7.5)
@@ -337,7 +337,7 @@ for i, (num, label) in enumerate(stats_right):
 txBox = slide.shapes.add_textbox(Inches(0.8), Inches(6.5), Inches(8), Inches(0.5))
 tf = txBox.text_frame
 p = tf.paragraphs[0]
-p.text = "\"Building value through disciplined execution.\""
+p.text = "\"Workforce housing. Disciplined execution. Consistent returns.\""
 p.font.size = Pt(18)
 p.font.italic = True
 p.font.color.rgb = ACCENT
@@ -345,50 +345,50 @@ p.font.name = FONT
 
 
 # ============================================================
-# SLIDE 4: MARKET OVERVIEW - THREE CITIES
+# SLIDE 4: MARKET OVERVIEW - THREE COLUMNS
 # ============================================================
 slide = prs.slides.add_slide(blank_layout)
 add_accent_bar(slide)
 add_logo_watermark(slide)
 
 add_section_label(slide, "MARKET OVERVIEW", Inches(0.8), Inches(0.5))
-add_title(slide, "Three Strategic Markets Across\nthe Target Region", Inches(0.8), Inches(0.9), width=Inches(11))
+add_title(slide, "Five Target Markets Across\nthe U.S. Sun Belt", Inches(0.8), Inches(0.9), width=Inches(11))
 
 cities = [
     {
-        "name": "Market Alpha",
+        "name": "Austin / San Antonio",
         "color": ACCENT,
         "strengths": [
-            "Borders two U.S. states",
-            "Major electronics manufacturing cluster",
-            "4 commercial bridge crossings",
-            "20+ years of manufacturing history",
-            "261,000+ manufacturing workers",
-            "370+ registered companies",
+            "Fastest-growing large metro in the U.S.",
+            "Major tech and defense employer base",
+            "Strong rent growth with limited new Class B supply",
+            "Pro-business regulatory environment",
+            "Young, educated workforce driving demand",
+            "Affordable relative to coastal markets",
         ]
     },
     {
-        "name": "Market Beta",
+        "name": "Nashville / Raleigh",
         "color": SECONDARY,
         "strengths": [
-            "Regional industrial and financial capital",
-            "Deep automotive and heavy manufacturing base",
-            "Largest talent pool of engineers in the region",
-            "International airport with direct U.S. flights",
-            "Premium institutional-grade industrial parks",
-            "Strong infrastructure and logistics networks",
+            "Top-tier job growth across healthcare and tech",
+            "Population influx from Northeast and Midwest",
+            "Diversified economy with Fortune 500 headquarters",
+            "Strong university pipeline fueling rental demand",
+            "Limited rent control or regulatory headwinds",
+            "Consistent 3 to 5% annual rent growth trajectory",
         ]
     },
     {
-        "name": "Market Gamma",
+        "name": "Tampa / Phoenix",
         "color": ACCENT,
         "strengths": [
-            "Direct border access to Southern California",
-            "Medical device manufacturing hub",
-            "Aerospace and defense cluster",
-            "Gateway to Pacific trade routes",
-            "Strong bilingual workforce",
-            "Growing institutional investor interest",
+            "Among the highest net domestic migration in the U.S.",
+            "Expanding financial services and logistics sectors",
+            "Deep pool of workforce housing inventory from 1980s and 1990s",
+            "Pro-landlord legal framework",
+            "Year-round climate attracting retirees and remote workers",
+            "Strong institutional investor demand for stabilized assets",
         ]
     },
 ]
@@ -438,15 +438,15 @@ add_accent_bar(slide)
 add_logo_watermark(slide)
 
 add_section_label(slide, "DEMAND DRIVERS", Inches(0.8), Inches(0.5))
-add_title(slide, "Why Companies Are Moving to\nthe Target Region Now", Inches(0.8), Inches(0.9), width=Inches(11))
+add_title(slide, "Why Multifamily Demand Is Accelerating\nin the Sun Belt", Inches(0.8), Inches(0.9), width=Inches(11))
 
 drivers = [
-    ("Tariff Pressure", "China tariffs at 25%+ with escalation risk. USMCA provides duty-free U.S. access for locally assembled products."),
-    ("Supply Chain Risk", "COVID exposed single-source fragility. Boards are mandating nearshore alternatives for supply chain resilience."),
-    ("Customer Mandates", "U.S. buyers increasingly requiring nearshore or domestic production from their suppliers."),
-    ("Speed to Market", "2-3 day ground transit vs. 4-6 week ocean freight from Asia. Same-day customs clearance at the border."),
-    ("Labor Advantage", "20-30% of China coastal wages. Deep skilled manufacturing workforce with 20+ years of experience."),
-    ("USMCA Compliance", "Products assembled locally qualify for duty-free U.S. import under rules of origin provisions."),
+    ("Remote Work Migration", "Remote and hybrid work policies are enabling millions of workers to relocate from high-cost coastal cities to affordable Sun Belt metros."),
+    ("Housing Shortage", "The U.S. is 4 to 7 million units short. New construction remains below household formation rates, tightening supply in growth markets."),
+    ("Affordability Gap", "Monthly mortgage payments now exceed rent by 40%+ in most Sun Belt metros, keeping would-be buyers in the rental market longer."),
+    ("Millennial Demographics", "72 million millennials are in peak renting years. Delayed homeownership, student debt, and lifestyle preferences sustain rental demand."),
+    ("Job Growth", "Sun Belt metros are adding jobs at 2 to 3x the national rate, led by healthcare, tech, logistics, and financial services employers."),
+    ("Population Growth", "Sun Belt states captured over 80% of U.S. population growth since 2020, with net domestic migration accelerating post-pandemic."),
 ]
 
 for i, (title, desc) in enumerate(drivers):
@@ -484,32 +484,32 @@ for i, (title, desc) in enumerate(drivers):
 
 
 # ============================================================
-# SLIDE 6: TENANT DEMAND (Electronics Cluster)
+# SLIDE 6: TENANT DEMOGRAPHICS
 # ============================================================
 slide = prs.slides.add_slide(blank_layout)
 add_accent_bar(slide)
 add_logo_watermark(slide)
 
-add_section_label(slide, "TENANT DEMAND", Inches(0.8), Inches(0.5))
-add_title(slide, "Asia's Electronics Giants Are Already\nBuilding in the Target Region", Inches(0.8), Inches(0.9), width=Inches(11))
+add_section_label(slide, "TENANT DEMOGRAPHICS", Inches(0.8), Inches(0.5))
+add_title(slide, "Who Rents Workforce Housing\nin the Sun Belt", Inches(0.8), Inches(0.9), width=Inches(11))
 
-companies = [
-    ("Foxconn", "iPhone, AI servers", "$20B+ regional investment", "Operations since 2005"),
-    ("Pegatron", "Apple supplier", "Regional expansion", "Operations since 2014"),
-    ("Flex Ltd", "EMS leader", "Long-term presence", "Operations since 2003"),
-    ("Inventec", "Server & notebook ODM", "US-proximate production", "Operations since 2008"),
-    ("Quanta", "World's largest notebook ODM", "Expanding footprint", "Operations since 2010"),
-    ("Wistron", "Consumer electronics", "Supply chain diversification", "Operations since 2012"),
-    ("Wiwynn", "Cloud server hardware", "Data center supply chain", "Operations expanding"),
+segments = [
+    ("Young Professionals", "Ages 25 to 34, early career", "Largest renter cohort by volume", "Relocating for job opportunities"),
+    ("Healthcare Workers", "Nurses, technicians, support staff", "Stable employment, shift schedules", "Proximity to hospitals and clinics"),
+    ("Tech Relocators", "Remote workers from coastal markets", "Higher income, longer lease terms", "Seeking affordability and lifestyle"),
+    ("Service Industry", "Hospitality, retail, food service", "Essential workforce, consistent demand", "Price-sensitive, high turnover"),
+    ("Military / Gov", "Active duty, veterans, civil servants", "Reliable income, BAH-supported rents", "Concentrated near bases and agencies"),
+    ("Empty Nesters", "Ages 55+, downsizing from ownership", "Strong credit, long tenure", "Seeking low-maintenance living"),
+    ("University Grads", "Recent graduates entering workforce", "Growing income trajectory", "First-time renters in metro areas"),
 ]
 
-for i, (name, product, detail, year) in enumerate(companies):
+for i, (name, profile, detail, note) in enumerate(segments):
     col = i % 2
     row = i // 2
     x = Inches(0.8) + Inches(6) * col
     y = Inches(2.6) + Inches(1.1) * row
 
-    # Company name in accent color
+    # Segment name in accent color
     txBox = slide.shapes.add_textbox(x, y, Inches(2.5), Inches(0.4))
     tf = txBox.text_frame
     p = tf.paragraphs[0]
@@ -524,13 +524,13 @@ for i, (name, product, detail, year) in enumerate(companies):
     tf2 = txBox2.text_frame
     tf2.word_wrap = True
     p2 = tf2.paragraphs[0]
-    p2.text = f"{product} | {detail}"
+    p2.text = f"{profile} | {detail}"
     p2.font.size = Pt(12)
     p2.font.color.rgb = DARK_SLATE
     p2.font.name = FONT
 
     p3 = tf2.add_paragraph()
-    p3.text = year
+    p3.text = note
     p3.font.size = Pt(10)
     p3.font.italic = True
     p3.font.color.rgb = RGBColor(0x6B, 0x72, 0x78)
@@ -540,7 +540,7 @@ for i, (name, product, detail, year) in enumerate(companies):
 txBox = slide.shapes.add_textbox(Inches(0.8), Inches(6.5), Inches(11), Inches(0.5))
 tf = txBox.text_frame
 p = tf.paragraphs[0]
-p.text = "These OEMs and their supply chain partners need industrial space. Their suppliers represent an additional pipeline of tenant demand for the fund."
+p.text = "Demographic profiles shown for demonstration purposes."
 p.font.size = Pt(13)
 p.font.italic = True
 p.font.color.rgb = DARK_SLATE
@@ -555,44 +555,44 @@ add_accent_bar(slide)
 add_logo_watermark(slide)
 
 add_section_label(slide, "INVESTMENT STRATEGY", Inches(0.8), Inches(0.5))
-add_title(slide, "Core-Plus Industrial Portfolio\nWith Development Upside", Inches(0.8), Inches(0.9), width=Inches(11))
+add_title(slide, "Value-Add Class B Multifamily\nWith Renovation Upside", Inches(0.8), Inches(0.9), width=Inches(11))
 
-# Left column: Stabilized Acquisitions
+# Left column: Acquisition Criteria
 txBox = slide.shapes.add_textbox(Inches(0.8), Inches(2.5), Inches(5.5), Inches(0.5))
 tf = txBox.text_frame
 p = tf.paragraphs[0]
-p.text = "Stabilized Acquisitions (~65%)"
+p.text = "Acquisition Criteria"
 p.font.size = Pt(20)
 p.font.bold = True
 p.font.color.rgb = ACCENT
 p.font.name = FONT
 
 acq_items = [
-    "Class-A industrial, >100,000 SF",
-    "NNN leases, USD-denominated",
-    "WALT ~5 years, annual CPI escalators",
-    "Multinational credit tenants",
-    "Entry cap range: ~8.0% across target markets",
+    "Class B garden-style and mid-rise apartments",
+    "80 to 250 units per property",
+    "1980s to 2000s vintage construction",
+    "Below-market rents with renovation upside",
+    "Target basis: $80K to $150K per unit",
 ]
 add_bullet_list(slide, acq_items, Inches(0.8), Inches(3.2), width=Inches(5.5), height=Inches(3), size=Pt(13))
 
-# Right column: Build-to-Core
+# Right column: Renovation Playbook
 txBox = slide.shapes.add_textbox(Inches(7), Inches(2.5), Inches(5.5), Inches(0.5))
 tf = txBox.text_frame
 p = tf.paragraphs[0]
-p.text = "Build-to-Core Development (\u226435%)"
+p.text = "Renovation Playbook"
 p.font.size = Pt(20)
 p.font.bold = True
 p.font.color.rgb = SECONDARY
 p.font.name = FONT
 
 dev_items = [
-    "\u226512% yield-on-cost target",
-    "~65% LTC fixed-rate financing",
-    "6-12 months reserves",
-    "First building spec; \u226550% leased before next spec",
-    "Pre-leased and build-to-suit preferred",
-    "Corporate guaranteed leases (where available)",
+    "Interior upgrades: countertops, fixtures, flooring, appliances",
+    "Exterior improvements: landscaping, paint, amenity spaces",
+    "Budget: $8K to $15K per unit, scaled to market rents",
+    "12 to 18 month renovation cycle per property",
+    "Target rent premiums: $150 to $300 per unit post-renovation",
+    "Unit turns executed on natural lease expirations",
 ]
 add_bullet_list(slide, dev_items, Inches(7), Inches(3.2), width=Inches(5.5), height=Inches(3), size=Pt(13))
 
@@ -613,7 +613,7 @@ r.font.bold = True
 r.font.color.rgb = ACCENT
 r.font.name = FONT
 r2 = p.add_run()
-r2.text = "$500M gross asset value across ~25 assets  |  ~$8M equity per deal  |  MSA cap 35%  |  4 assets per year"
+r2.text = "$200M gross asset value across 15 to 20 properties  |  80 to 250 units per deal  |  Sun Belt markets only"
 r2.font.size = Pt(14)
 r2.font.color.rgb = DARK_SLATE
 r2.font.name = FONT
@@ -630,11 +630,11 @@ add_section_label(slide, "RETURNS", Inches(0.8), Inches(0.5))
 add_title(slide, "Five Levers Driving Returns", Inches(0.8), Inches(0.9), width=Inches(10))
 
 levers = [
-    ("1", "Going-In Yield Premium", "Core-Plus income from day one. Target market cap rates offer ~200 bps spread vs. U.S. Sunbelt industrial."),
-    ("2", "Contractual NOI Growth", "NNN lease structures with U.S. CPI escalators provide built-in annual rent growth."),
-    ("3", "Credit Quality & Lease Term", "~5-year WALT with multinational corporate-guaranteed tenants reduces income volatility."),
-    ("4", "Execution Alpha", "Proprietary access via ROFR/JVs, land bank, in-house development and GC capabilities."),
-    ("5", "Exit Cap Discipline", "Underwrite exit at minimum 100 bps inside entry cap. Rolling sales at IRR/MOIC thresholds."),
+    ("1", "Below-Market Acquisition Basis", "Acquire Class B properties at a discount to replacement cost, creating embedded equity from day one."),
+    ("2", "Renovation-Driven Rent Growth", "Interior and exterior upgrades generate $150 to $300 per unit rent premiums on a $8K to $15K per unit investment."),
+    ("3", "Operational Efficiency", "In-house property management reduces expenses 5 to 10% versus third-party operators, improving NOI margins."),
+    ("4", "Organic Market Appreciation", "Sun Belt population and job growth drive 3 to 5% annual rent increases and natural asset value appreciation."),
+    ("5", "Disciplined Exit Timing", "Sell stabilized, renovated assets into strong institutional buyer demand at compressed cap rates."),
 ]
 
 for i, (num, title, desc) in enumerate(levers):
@@ -686,27 +686,27 @@ add_accent_bar(slide)
 add_logo_watermark(slide)
 
 add_section_label(slide, "FUND STRUCTURE", Inches(0.8), Inches(0.5))
-add_title(slide, "Acme Fund | Key Terms", Inches(0.8), Inches(0.9), width=Inches(10))
+add_title(slide, "Meridian Residential Fund | Key Terms", Inches(0.8), Inches(0.9), width=Inches(10))
 
 # Two columns of terms
 left_terms = [
-    ("Vehicle", "Delaware LP master with optional Cayman feeder/blocker"),
-    ("Fund Life", "Closed-end, up to 15 years"),
-    ("Target GAV", "$500M across ~25 assets"),
-    ("Target Leverage", "~65% LTV at acquisition; 75% hard max"),
-    ("Debt Profile", "Fixed-rate bias, 7-10 year tenor, DSCR \u22651.25x"),
-    ("Currency", "All USD (leases, debt, distributions)"),
-    ("GP Commitment", "5-10% of fund"),
+    ("Vehicle", "Delaware LLC"),
+    ("Fund Life", "7-year closed-end with two 1-year extensions"),
+    ("Target GAV", "$200M across 15 to 20 properties"),
+    ("Target Leverage", "55 to 65% LTV, Agency debt preferred"),
+    ("Debt Profile", "Fannie Mae, Freddie Mac, and HUD financing"),
+    ("Currency", "USD"),
+    ("GP Commitment", "5% of fund equity"),
 ]
 
 right_terms = [
-    ("Target Net IRR", "12-15%"),
-    ("Cash Yield", "6-7% quarterly"),
-    ("Preferred Return", "8% cumulative, non-compounding"),
-    ("Promote", "15-20% over 8% IRR\n20-25% over 12% IRR\n30% over 17% IRR"),
-    ("AM Fee", "2.0% during IP, then 1.5%"),
-    ("Acquisition Fee", "1%"),
-    ("Development Fee", "5%"),
+    ("Target Net IRR", "13 to 16%"),
+    ("Cash Yield", "5 to 6% quarterly"),
+    ("Preferred Return", "7% cumulative, non-compounding"),
+    ("Promote", "10% over 7% IRR\n15% over 12% IRR\n20% over 16% IRR"),
+    ("AM Fee", "1.5% during investment period, then 1.0%"),
+    ("Acquisition Fee", "1.0%"),
+    ("Construction Mgmt", "5% of renovation budget"),
 ]
 
 # Left column
@@ -777,12 +777,12 @@ add_section_label(slide, "RISK MANAGEMENT", Inches(0.8), Inches(0.5))
 add_title(slide, "Disciplined Risk Framework", Inches(0.8), Inches(0.9), width=Inches(10))
 
 risks = [
-    ("Market / Policy", "USMCA + USD leases provide structural hedge; MSA concentration cap at 40%"),
-    ("Tenant / Credit", "\u226580% credit or parent-guaranteed tenants; watch-list protocol at 24-30 months to maturity"),
-    ("Lease / Income", "NNN + CPI escalators; staggered lease maturities across portfolio"),
-    ("Construction", "\u226435% development allocation; \u226512% YoC; 6-12 month reserves; GMP contracts"),
-    ("Debt / Refi", "Fixed-rate bias, DSCR \u22651.25x, LTV \u226475%; no subscription lines"),
-    ("Legal / Compliance", "FCPA and sanctions diligence; environmental assessment; title insurance on all acquisitions"),
+    ("Interest Rate", "Fixed-rate Agency debt with 5 to 10 year terms; rate caps on any floating-rate exposure; DSCR floors at 1.25x"),
+    ("Geographic Concentration", "No single MSA exceeds 30% of portfolio GAV; diversified across five Sun Belt markets with distinct economic drivers"),
+    ("Tenant Credit", "Workforce housing targets employed renters with stable incomes; 97% historical occupancy demonstrates consistent demand"),
+    ("Renovation Execution", "In-house construction management; GMP contracts with licensed contractors; contingency reserves on every project"),
+    ("Insurance / Casualty", "Comprehensive property and liability coverage; flood and wind policies in applicable markets; replacement cost endorsements"),
+    ("Regulatory / Rent Control", "Target markets selected for pro-landlord legal frameworks; no current rent control legislation in any target MSA"),
 ]
 
 for i, (risk, mitigant) in enumerate(risks):
@@ -821,14 +821,14 @@ add_accent_bar(slide)
 add_logo_watermark(slide)
 
 add_section_label(slide, "COMPETITIVE ADVANTAGE", Inches(0.8), Inches(0.5))
-add_title(slide, "Why Acme Fund", Inches(0.8), Inches(0.9), width=Inches(10))
+add_title(slide, "Why Meridian Residential Fund", Inches(0.8), Inches(0.9), width=Inches(10))
 
 advantages = [
-    ("Proprietary Access", "Land bank, ROFR agreements, joint venture relationships, and repeat tenant pipelines that institutional funds cannot replicate."),
-    ("Local Execution", "Established entitlement and municipal access. In-house general contractor reduces timelines and costs."),
-    ("Data & AI Engine", "Broker pipeline scraping, AI-assisted lead scoring, and site-selection models built on 1,000+ qualified leads and decades of market intelligence."),
-    ("Cross-Border Capability", "Bilingual team, U.S.-Mexico capital markets expertise, and dual-border advantage for faster closings and operational flexibility."),
-    ("Aligned Incentives", "GP commits 5-10% alongside LPs. Transparent affiliate policies. Independent IC member. Institutional reporting package."),
+    ("Local Market Knowledge", "On-the-ground teams in every target MSA with deep broker relationships, submarket expertise, and real-time deal flow intelligence."),
+    ("In-House Management", "Vertically integrated property management reduces operating costs 5 to 10% versus third-party operators and improves tenant retention."),
+    ("Renovation Expertise", "Proven playbook across 3,200+ units with standardized scopes, vetted contractor networks, and predictable cost and timeline execution."),
+    ("Data-Driven Underwriting", "Proprietary models scoring rent comps, renovation ROI, submarket growth, and tenant demand across every target market."),
+    ("Aligned Incentives", "GP commits 5% alongside LPs. Transparent fee structure. Conservative leverage. Institutional reporting and governance standards."),
 ]
 
 for i, (title, desc) in enumerate(advantages):
@@ -890,7 +890,7 @@ for shape in slide.shapes:
 txBox = slide.shapes.add_textbox(Inches(0.8), Inches(1.2), Inches(11), Inches(1))
 tf = txBox.text_frame
 p = tf.paragraphs[0]
-p.text = "Invest in the\nNearshoring Super-Cycle"
+p.text = "Invest in America's\nWorkforce Housing Shortage"
 p.font.size = Pt(42)
 p.font.bold = True
 p.font.color.rgb = WHITE
@@ -899,11 +899,11 @@ p.line_spacing = Pt(52)
 
 # Key terms summary
 terms_summary = [
-    ("Target Net IRR", "12-15% (net to LPs, USD)"),
-    ("Cash Yield", "6-7% quarterly distributions"),
-    ("Fund Life", "Closed-end, up to 15 years"),
-    ("Preferred Return", "8% cumulative"),
-    ("GP Commitment", "5-10%, fully aligned"),
+    ("Target Net IRR", "13 to 16% (net to LPs)"),
+    ("Cash Yield", "5 to 6% quarterly distributions"),
+    ("Fund Life", "7-year closed-end"),
+    ("Preferred Return", "7% cumulative"),
+    ("GP Commitment", "5%, fully aligned"),
 ]
 
 txBox = slide.shapes.add_textbox(Inches(0.8), Inches(3.5), Inches(5.5), Inches(3.5))
@@ -941,10 +941,10 @@ p.font.color.rgb = ACCENT
 p.font.name = FONT
 
 gov_items = [
-    "GP-controlled IC with 1 independent member",
-    "LP observer rights; LPAC for major deviations",
+    "GP-controlled IC with independent member",
+    "LP advisory committee for major decisions",
     "Quarterly institutional reporting + annual GAAP audit",
-    "Quarterly NAV",
+    "Quarterly NAV updates",
     "Disposition-ready data rooms maintained",
 ]
 for item in gov_items:
@@ -990,7 +990,7 @@ if os.path.exists(LOGO_WHITE):
 txBox = slide.shapes.add_textbox(Inches(3), Inches(3.2), Inches(7), Inches(3))
 tf = txBox.text_frame
 p = tf.paragraphs[0]
-p.text = "John Smith"
+p.text = "James Porter"
 p.font.size = Pt(32)
 p.font.bold = True
 p.font.color.rgb = WHITE
@@ -998,7 +998,7 @@ p.font.name = FONT
 p.alignment = PP_ALIGN.CENTER
 
 p2 = tf.add_paragraph()
-p2.text = "CEO, Acme Industrial Real Estate"
+p2.text = "CEO, Meridian Capital Partners"
 p2.font.size = Pt(16)
 p2.font.color.rgb = ACCENT
 p2.font.name = FONT
@@ -1006,21 +1006,21 @@ p2.alignment = PP_ALIGN.CENTER
 p2.space_after = Pt(20)
 
 p3 = tf.add_paragraph()
-p3.text = "ceo@example.com"
+p3.text = "jporter@meridiancapitalpartners.com"
 p3.font.size = Pt(14)
 p3.font.color.rgb = WARM_GRAY
 p3.font.name = FONT
 p3.alignment = PP_ALIGN.CENTER
 
 p4 = tf.add_paragraph()
-p4.text = "acme-industrial.com"
+p4.text = "meridiancapitalpartners.com"
 p4.font.size = Pt(14)
 p4.font.color.rgb = WARM_GRAY
 p4.font.name = FONT
 p4.alignment = PP_ALIGN.CENTER
 
 p5 = tf.add_paragraph()
-p5.text = "Target Market, Country"
+p5.text = "Austin, TX"
 p5.font.size = Pt(14)
 p5.font.color.rgb = WARM_GRAY
 p5.font.name = FONT
@@ -1030,7 +1030,7 @@ p5.alignment = PP_ALIGN.CENTER
 txBox = slide.shapes.add_textbox(Inches(2), Inches(5.8), Inches(9), Inches(0.5))
 tf = txBox.text_frame
 p = tf.paragraphs[0]
-p.text = "\"Building value through disciplined execution.\""
+p.text = "\"Workforce housing. Disciplined execution. Consistent returns.\""
 p.font.size = Pt(18)
 p.font.italic = True
 p.font.color.rgb = ACCENT
