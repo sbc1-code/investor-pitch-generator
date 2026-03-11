@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Investor Pitch Deck Preview</title>
+<meta name="description" content="Interactive investor pitch deck generator. Preview and present real estate fund pitch decks with dark/light theme support.">
+<meta property="og:title" content="Investor Pitch Deck Preview">
+<meta property="og:description" content="Interactive investor pitch deck generator. Preview and present real estate fund pitch decks with dark/light theme support.">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -556,14 +559,255 @@
 
   [data-theme="light"] .slide { box-shadow: 0 2px 20px rgba(0,0,0,0.12); }
 
+  /* Focus-visible styles for nav buttons */
+  .nav button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .theme-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* Visually hidden utility for screen readers */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   @media (max-width: 860px) {
-    .slide { width: 100%; height: auto; aspect-ratio: 16/9; }
-    .slide-viewport { padding: 24px 12px 100px; }
+    .slide {
+      width: 100%;
+      height: auto;
+      min-height: auto;
+    }
+    .slide-viewport {
+      padding: 16px 8px 90px;
+    }
+    .slide-content {
+      padding: 20px;
+    }
+
+    /* Typography scale-up */
+    .section-label {
+      font-size: 11px;
+    }
+    .slide-title {
+      font-size: 20px;
+      margin-bottom: 14px;
+    }
+    .slide-body {
+      font-size: 14px;
+    }
+    .bullet-list li {
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 8px;
+      padding-left: 14px;
+    }
+
+    /* Cover slide */
+    .cover-fund {
+      font-size: 28px;
+      letter-spacing: 1px;
+      margin-top: 12px;
+    }
+    .cover-subtitle {
+      font-size: 15px;
+    }
+    .cover-tagline {
+      font-size: 13px;
+    }
+    .cover-footer {
+      font-size: 11px;
+    }
+
+    /* Stats bar - wrap on mobile */
+    .stats-bar {
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .stat-item .stat-num {
+      font-size: 20px;
+    }
+    .stat-item .stat-label {
+      font-size: 11px;
+    }
+
+    /* Multi-column layouts collapse to single column */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .driver-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .company-grid {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .risk-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    /* Hide column divider on mobile */
+    .col-divider {
+      display: none;
+    }
+
+    /* Column titles */
+    .col-title {
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    /* Driver cards */
+    .driver-card .driver-title {
+      font-size: 13px;
+    }
+    .driver-card .driver-desc {
+      font-size: 12px;
+    }
+
+    /* Company grid items */
+    .company-name {
+      font-size: 14px;
+      min-width: 60px;
+    }
+    .company-detail {
+      font-size: 12px;
+    }
+    .company-year {
+      font-size: 11px;
+    }
+
+    /* Lever rows */
+    .lever-title {
+      font-size: 13px;
+    }
+    .lever-desc {
+      font-size: 12px;
+    }
+
+    /* KV terms */
+    .kv-key {
+      font-size: 12px;
+    }
+    .kv-val {
+      font-size: 12px;
+    }
+
+    /* Risk items */
+    .risk-item .risk-cat {
+      font-size: 13px;
+    }
+    .risk-item .risk-mit {
+      font-size: 12px;
+    }
+
+    /* Advantage rows */
+    .adv-row {
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .adv-title {
+      font-size: 13px;
+      min-width: auto;
+    }
+    .adv-desc {
+      font-size: 12px;
+    }
+
+    /* Ask slide */
+    .ask-key {
+      font-size: 12px;
+    }
+    .ask-val {
+      font-size: 12px;
+    }
+    .gov-title {
+      font-size: 14px;
+    }
+
+    /* About stats */
+    .about-stat .about-num {
+      font-size: 22px;
+    }
+    .about-stat .about-label {
+      font-size: 12px;
+    }
+
+    /* Contact slide */
+    .contact-name {
+      font-size: 22px;
+    }
+    .contact-role {
+      font-size: 13px;
+    }
+    .contact-info {
+      font-size: 13px;
+    }
+    .contact-tagline {
+      font-size: 14px;
+    }
+
+    /* Slide notes and footers */
+    .slide-tagline {
+      font-size: 13px;
+    }
+    .slide-note {
+      font-size: 12px;
+    }
+    .dark-footer {
+      font-size: 11px;
+    }
+    .portfolio-target {
+      font-size: 12px;
+    }
+
+    /* Navigation - full width on mobile */
+    .nav {
+      left: 8px;
+      right: 8px;
+      bottom: 12px;
+      transform: none;
+      border-radius: 10px;
+      padding: 8px 16px;
+      justify-content: center;
+    }
+
+    /* Banner adjustments */
+    .banner {
+      padding: 10px 12px;
+      font-size: 12px;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .theme-toggle {
+      position: static;
+      margin-left: auto;
+    }
   }
 </style>
 </head>
 <body>
 
+<h1 class="sr-only">Investor Pitch Deck Preview - Meridian Residential Fund</h1>
 <div class="banner">
   Generated by
   <a href="https://github.com/sbc1-code/investor-pitch-generator" target="_blank" rel="noopener noreferrer">investor-pitch-generator</a>
@@ -1007,7 +1251,7 @@
 <!-- Navigation -->
 <div class="nav">
   <button id="prev" aria-label="Previous slide">&#8592;</button>
-  <div class="counter"><span id="current">1</span> / 13</div>
+  <div class="counter" aria-live="polite"><span id="current">1</span> / 13</div>
   <button id="next" aria-label="Next slide">&#8594;</button>
 </div>
 
